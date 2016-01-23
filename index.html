@@ -1,0 +1,52 @@
+<htmL>
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+<body>
+  <ul>
+    <li><select id="select_shops"></select></li>
+    <li><select id="select_items"></select></li>
+  </ul>
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript">
+  // 初期処理
+  $(function(){
+    Shops.load();
+    $('#select_shops').change(function(){
+      var shop_code = $(this).val();
+      Items.load(shop_code);
+    });
+  });
+
+  // クラス定義
+  var Shops = {
+    load : function(){
+      var $select = $('#select_shops');
+      $select.empty();
+      $('<option/>').appendTo($select);//1件空レコード追加
+      $.getJSON("/json/shops.json", function(data){
+        $.each(data.shops, function() {
+          $('<option/>').val(this.code).text(this.name).appendTo($select);
+        });
+      });
+    }
+  }
+
+  var Items = {
+    load : function(shop_code){
+      if( !shop_code ) return;
+
+      var $select = $('#select_items');
+      $select.empty();
+      $('<option/>').appendTo($select);//1件空レコード追加
+      $.getJSON("/json/shop_" + shop_code + "_items.json", function(data){
+        $.each(data.items, function() {
+          $('<option/>').val(this.code).text(this.name).appendTo($select);
+        });
+      });
+    }
+  }
+  </script>
+</body>
+</html>
