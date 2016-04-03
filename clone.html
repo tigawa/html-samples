@@ -11,8 +11,8 @@
     <div id="skeleton" style="display:none">
       <p class="new-line">
         <select class="" name="">
-          <option>井川</option>
-          <option>あさず</option>
+          <option>みかん</option>
+          <option>りんご</option>
         </select>
 
         <input type="checkbox" name="name" value="">
@@ -29,7 +29,13 @@
   <script type="text/javascript" >
     $(function(){
       $("#add").click(function(){
-        $("#skeleton .new-line").clone(true).insertBefore(this);
+        var $new_line = $("#skeleton .new-line").clone(true);
+
+        var size = $('.new-line:visible').length;
+
+        $new_line.find("select").attr('name',"kind[" + size + "]");
+        $new_line.insertBefore(this);
+
       }).click();
     });
   </script>
