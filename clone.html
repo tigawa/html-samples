@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>サンプル集</title>
+</head>
+
+<body>
+  <form class="" action="index.html" method="post">
+    <div id="skeleton" style="display:none">
+      <p class="new-line">
+        <select class="" name="">
+          <option>井川</option>
+          <option>あさず</option>
+        </select>
+
+        <input type="checkbox" name="name" value="">
+        <input type="checkbox" name="name" value="">
+        <input type="checkbox" name="name" value="">
+
+        <input type="text" name="name" value="">
+      </p>
+    </div>
+    <input id="add" type="button" name="name" value="add.">
+  </form>
+
+  <script src="js/jquery.min.js"></script>
+  <script type="text/javascript" >
+    $(function(){
+      $("#add").click(function(){
+        $("#skeleton .new-line").clone(true).insertBefore(this);
+      }).click();
+    });
+  </script>
+</body>
+</html>

@@ -8,7 +8,7 @@
     <li><select id="select_items"></select></li>
   </ul>
 
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="js/jquery.min.js"></script>
   <script type="text/javascript">
   // 初期処理
   $(function(){
@@ -27,6 +27,11 @@
       $('<option/>').appendTo($select);//1件空レコード追加
       $.getJSON("/json/shops.json", function(data){
         $.each(data.shops, function() {
+          $option = $('<option/>');
+          $option.val(this.code);
+          $option.text(this.name);
+          $select.appned($option);
+
           $('<option/>').val(this.code).text(this.name).appendTo($select);
         });
       });
