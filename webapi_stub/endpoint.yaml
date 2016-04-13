@@ -1,0 +1,6 @@
+-  request:
+      url: ^/search$
+      method: GET
+   response:
+      status: 200
+      body: 'success!!'
