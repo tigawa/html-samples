@@ -1,25 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>submit</title>
-  </head>
-  <body>
 
-    <form action="http://localhost:8882/search" method="GET">
-      <input type="text" name="name" value="">
-      <input type="hidden" name="pageNo" value="">
-      <button type="submit" >検索</button>
-    </form>
+<head>
+  <meta charset="utf-8">
+  <title>submit</title>
+</head>
 
-    <script src="js/jquery.min.js"></script>
-    <script type="text/javascript">
-      $(function(){
-        $('form').submit(function(){
-          $('form input[name=pageNo]').val(0);
-          return true;
-        });
+<body>
+
+  <form action="http://localhost:8882/search" method="GET">
+    <input type="text" name="name" value="">
+    <input id="pageNo" type="hidden" name="pageNo" value="">
+    <button type="button" id="btnSearch">検索</button>
+    <button type="button" id="next">next</button>
+  </form>
+
+  <script src="js/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      // enter
+      $(document).on("keypress", "input:not(.allow_submit)", function(event) {
+        return event.which !== 13;
       });
-    </script>
-  </body>
+
+      $('form').keypress(function(event) {
+        if( event.which === 13 ){
+          $('#btnSearch').click();
+        }
+      });
+
+      $('#btnSearch').click(function(){
+        $form = $(this).closest('form');
+        $('#pageNo').val(0);
+        $form.submit();
+      });
+
+      $('#next').click(function(){
+        $form = $(this).closest('form');
+        $('#pageNo').val(1);
+        $form.submit();
+      });
+
+    });
+  </script>
+</body>
+
 </html>
