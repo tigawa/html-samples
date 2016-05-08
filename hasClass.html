@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>hasClass</title>
+  </head>
+  <body>
+
+    <form id="baseForm" th:action="@{'/'">
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        $('button:reset').click(function(){
+          if($(this).hasClass('data-clear')){
+            var $form = $(this).closest('form');
+            //クリア処理
+          }
+        });
+      })
+
+      var url = $('#baseForm').attr('action');
+      console.log(url + "/yosann");
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>サンプル集</title>
+</head>
+
+<body>
+  <form id="entryForm" class="" action="index.html" method="post">
+    <table id="skeleton">
+      <tr class="new-line">
+        <td>
+          <select name="details[1].kind">
+            <option>-</option>
+            <option>みかん</option>
+            <option>りんご</option>
+          </select>
+        </td>
+        <td>
+          <label ><input type="checkbox" name="details[1].size" value="0"> りんご（大）</label>
+          <label ><input type="checkbox" name="details[1].size" value="1"> りんご（中）</label>
+          <label ><input type="checkbox" name="details[1].size" value="2"> りんご（小）</label>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <script src="js/jquery.min.js"></script>
+  <script type="text/javascript" >
+    $(function(){
+      $("#entryForm").on('change','select[name$=".kind"]',function(){
+
+        var $kindSelect = $(this);
+        var kind = $kindSelect.find('option:selected').text();
+
+        if(kind === 'りんご')
+          var enable = true;
+
+        // サイズのチェックボックスの操作
+        var $sizeCheckbox = $kindSelect.closest('td').next().find('input:checkbox');
+        $sizeCheckbox.each(function(){
+          if(enable){
+            $(this).prop("disabled", false);//活性
+          } else {
+            $(this).prop("disabled", true);//非活性
+            $(this).prop("checked", false);//チェックを外す
+          }
+        })
+      });
+    });
+  </script>
+</body>
+</html>
