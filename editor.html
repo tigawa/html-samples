@@ -11,25 +11,24 @@
 <body>
     <script>
         window.Editors = [];
-        function editor(suffix) {
-            var a = 1;
+        ['main', 'sub'].forEach(function (suffix) {
+            // 外部へ公開
             window.Editors[suffix] = {
                 show: show
-            }
+            };
             if (suffix === 'main') {
                 window.show = show
             }
 
+            var a = 1;
             function show() {
                 console.log(suffix + (a++));
             }
-        }
-        editor('main');
-        editor('sub');
+        });
 
         Editors.main.show();
         show();
-        Editors.sub.show();
+        Editors['sub'].show();
     </script>
 </body>
 
