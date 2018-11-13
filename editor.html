@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.Editors = [];
+        function editor(suffix) {
+            var a = 1;
+            window.Editors[suffix] = {
+                show: show
+            }
+            if (suffix === 'main') {
+                window.show = show
+            }
+
+            function show() {
+                console.log(suffix + (a++));
+            }
+        }
+        editor('main');
+        editor('sub');
+
+        Editors.main.show();
+        show();
+        Editors.sub.show();
+    </script>
+</body>
+
+</html>
